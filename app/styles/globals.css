@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: red;
+  color: #fff;
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .menu-wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .menu-icon {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .menu-items {
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s, transform 0.3s;
+
+      &.open {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
