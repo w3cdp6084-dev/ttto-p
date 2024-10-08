@@ -1,137 +1,340 @@
-.container {
-    position: relative;
-  }
-  
-  .menuButton {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .menuButton span {
-    display: block;
-    font-size: 16px;
-  }
-  
-  .menuText {
-    display: inline-block;
-  }
-  
-  .menuIcon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin-left: 10px;
-  }
-  
-  .menuIcon svg {
-    width: 100%;
-    height: 100%;
-    fill: #fff;
-  }
-  
-  .menu {
-    display: none;
-    background-color: #444;
-    padding: 10px;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 200px;
-    border-radius: 4px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .menuList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menuItem {
-    padding: 10px 0;
-  }
-  
-  .menuLink {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .menuOpen {
-    display: block;
-  }
-  .c1uexyos {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 16;
-    visibility: hidden;
-    background: #f8f8f8;
-    opacity: 0;
-    transition-timing-function: cubic-bezier(.19,1,.22,1), linear;
-    transition-duration: .8s, 2s;
-    transition-property: transform, opacity, visibility;
-    transform: translateY(40px);
-  }
-  
-  .c1uexyos[data-is-opened="true"] {
-    visibility: visible;
-    opacity: 1;
-    transform: none;
-  }
-  
-  
-  .i9ksbu7 {
-    right: 0;
-    max-width: 1900px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-  .n1ezpvw8 {
-    position: relative;
-    display: block;
-    padding: 90px 20px;
-  }
-  
-  .v77lzso {
-    width: calc((100% - 15px) / 2);
-    margin-top: 15px;
-  }
-  
-  @media (min-width: 640px) {
-    .v77lzso {
-      width: calc((100% - 30px) / 3);
-      margin-left: 15px;
-    }
-  }
-  
-  .aekumnw {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    bottom: 0;
-    z-index: 2;
-    width: 9px;
-    height: 8px;
-    fill: #005bff;
-    transition-timing-function: cubic-bezier(.19,1,.22,1), linear;
-    transition-duration: .4s, 2s;
-    transition-property: transform, fill;
-  }
-  .c1uexyos {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 16;
-    visibility: hidden;
-    background: #f8f8f8;
-    opacity: 0;
-    transform: translateY(-100%); /* 初期状態で画面外に配置 */
-    transition: opacity; }
+/* ヘッダー全体のスタイル */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* ロゴ */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  font-size: 16px;
+}
+
+/* ページタイトル */
+.pageTitle {
+  font-size: 18px;
+}
+
+.titleText {
+  font-weight: bold;
+}
+
+.logoLines {
+  display: inline-block;
+}
+
+.line1, .line2 {
+  width: 20px;
+  height: 20px;
+}
+
+/* ハンバーガーメニュー */
+.hamburgerMenu {
+  position: relative;
+}
+
+.hamburgerButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menuText {
+  display: inline-block;
+}
+
+.icon {
+  display: inline-block;
+}
+
+/* メニュー */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+}
+
+.menuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* メニューの内容 */
+.menuContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.menuWrapper {
+  padding: 20px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.navItems {
+  margin-top: 20px;
+}
+
+.navItem {
+  margin-bottom: 15px;
+}
+
+.navItem a {
+  text-decoration: none;
+  color: #000;
+}
+
+.menuButton {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 160px;
+  height: 60px;
+  background-color: #fff;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menuButtonInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.menuTextWrapper {
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.menuText {
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #333;
+}
+
+.menuButton.open .menuText:first-child {
+  transform: translateY(-100%);
+}
+
+.menuButton.open .menuText:last-child {
+  transform: translateY(-100%);
+}
+
+.menuIconWrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.menuIcon, .closeIcon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.closeIcon {
+  transform: translateY(-100%);
+}
+
+.menuButton.open .menuIcon {
+  transform: translateY(100%);
+}
+
+.menuButton.open .closeIcon {
+  transform: translateY(0);
+}
+
+.menuIcon span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.menuIcon span:nth-child(1) {
+  top: 4px;
+}
+
+.menuIcon span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menuIcon span:nth-child(3) {
+  bottom: 4px;
+}
+
+.closeIcon span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.closeIcon span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.closeIcon span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.menuButton.open {
+  background-color: transparent;
+}
+
+/* ホバー効果 */
+.menuButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f0f0f0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menuButton:hover::before {
+  opacity: 1;
+}
+
+.menuButton.open::before,
+.menuButton.open:hover::before {
+  opacity: 0;
+}
+
+/* メニューが開いているときのテキスト色 */
+.menuButton.open .menuText {
+  color: #fff;
+}
+
+/* メニューが開いているときのホバー果 */
+.menuButton.open:hover .menuText,
+.menuButton.open:hover .closeIcon span {
+  color: #fff;
+  background-color: #fff;
+}
+
+/* ホバー時のアイコン色変更 */
+.menuButton:hover .menuIcon span {
+  background-color: #555;
+}
+
+.menuButton:hover .menuText {
+  color: #555;
+}
+
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.menuOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menuOverlay:not(.open) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.menuNav {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.mklw56m {
+  display: flex;
+  flex-direction: column;
+}
+
+.c4szrlw {
+  margin-bottom: 20px;
+}
+
+.mzur7s3 {
+  font-size: 24px;
+}
+
+.i6du1oa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.i6du1oa:hover {
+  color: #007bff;
+}
+
+.bcghuvy {
+  font-weight: bold;
+}
+
+.l14bodjf {
+  /* 必要に応じてスタイルを追加 */
+}
+
+.a1f8yy5c {
+  display: flex;
+  align-items: center;
+}
+
+.a1f8yy5c svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}

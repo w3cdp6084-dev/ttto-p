@@ -2,6 +2,7 @@
 import styles from './layout.module.css'
 import { Inter } from 'next/font/google'
 import Header from './components/Header'
+import Layout from './components/Layout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,9 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${styles.app}`}>
-        <Header />
-        <main>{children}</main>
+      <body>
+        <Layout>{children}</Layout>
       </body>
     </html>
   )

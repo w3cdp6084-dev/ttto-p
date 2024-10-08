@@ -1,55 +1,86 @@
-import React from 'react';
+'use client'; 
+
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from '../MenuComponent.module.css';
 
 const MenuComponent: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const router = useRouter();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+  }, [isMenuOpen]);
+
+  const handleLinkClick = (href: string) => {
+    setIsTransitioning(true);
+    setIsMenuOpen(false);
+    setTimeout(() => {
+      router.push(href);
+      setIsTransitioning(false);
+    }, 800); // Adjust timing as needed
+  };
+
+  const menuItems = [
+    { name: 'Home', link: '/' },
+    { name: 'About', link: '/about' },
+    { name: 'Products', link: '/products' },
+    { name: 'Contact', link: '/contact' },
+  ];
+
   return (
-    <div id="menu" className={styles.c1uexyos} data-is-opened="true">
-      <div className={styles.i9ksbu7} tabIndex={-1}>
-        <div className={styles.svyhwu} data-center-mode="true">
-          <div className={styles.sni25jc} style={{ transform: 'translateY(0)' }}>
-            <nav className={styles.n1ezpvw8}>
-              <div className={styles.mklw56m}>
-                <div className={`${styles.c4szrlw} ${styles.mzur7s3}`}>
-                  <a className={styles.i6du1oa} aria-current="page" href="/products/special/hocho/yasashii/">
-                    <span className={`${styles.bcghuvy} ${styles.l14bodjf}`}>Home</span>
-                    <span className={styles.a1f8yy5c} aria-hidden="true">
-                      <svg>
-                        <use xlinkHref="#arrow"></use>
-                      </svg>
-                    </span>
-                  </a>
-                </div>
-                <div className={`${styles.c4szrlw} ${styles.mzur7s3}`}>
-                  <a className={styles.i6du1oa} aria-current="false" href="/products/special/hocho/yasashii/about/">
-                    <span className={`${styles.bcghuvy} ${styles.l14bodjf}`}>About</span>
-                    <span className={styles.a1f8yy5c} aria-hidden="true">
-                      <svg>
-                        <use xlinkHref="#arrow"></use>
-                      </svg>
-                    </span>
-                  </a>
-                </div>
-                {/* 他のリンク項目も同様にここに追加 */}
-              </div>
-              <div className={styles.vn8tua5}>
-                <div className={`${styles.chpjtgt} ${styles.v77lzso}`}>
-                  <a className={styles.i1cw260o} aria-current="false" href="/products/special/hocho/yasashii/kirikata/eggplant/">
-                    <span className={`${styles.bcghuvy} ${styles.nfttxg7}`} aria-label="No.01">
-                      <span>#</span>01
-                    </span>
-                    <span className={`${styles.z1ki4wef} ${styles.lmrqidd}`}>なす</span>
-                    <svg className={styles.aekumnw} aria-hidden="true">
-                      <use xlinkHref="#arrow"></use>
-                    </svg>
-                  </a>
-                </div>
-                {/* 他の野菜リンクも同様にここに追加 */}
-              </div>
-            </nav>
+    <>
+      <button onClick={toggleMenu} className={`${styles.menuButton} ${isMenuOpen ? styles.open : ''}`}>
+        <div className={styles.menuButtonInner}>
+          <div className={styles.menuTextWrapper}>
+            <span className={styles.menuText}>Menu</span>
+            <span className={styles.menuText}>Close</span>
+          </div>
+          <div className={styles.menuIconWrapper}>
+            <span className={styles.menuIcon}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span className={styles.closeIcon}>
+              <span></span>
+              <span></span>
+            </span>
           </div>
         </div>
+      </button>
+      <div className={`${styles.menuOverlay} ${isMenuOpen ? styles.open : ''}`}>
+        <nav className={styles.menuNav}>
+          <div className={styles.mklw56m}>
+            {menuItems.map((item, index) => (
+              <div key={index} className={`${styles.c4szrlw} ${styles.mzur7s3}`}>
+                <a 
+                  className={styles.i6du1oa} 
+                  onClick={() => handleLinkClick(item.link)}
+                  style={{cursor: 'pointer'}}
+                >
+                  <span className={`${styles.bcghuvy} ${styles.l14bodjf}`}>{item.name}</span>
+                  <span className={styles.a1f8yy5c} aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            ))}
+          </div>
+        </nav>
       </div>
-    </div>
+    </>
   );
 };
 
